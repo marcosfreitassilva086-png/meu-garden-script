@@ -1,37 +1,38 @@
 -- ==========================================
--- BASE SCRIPT: MARIONETEIRO
--- SEM FUNÇÕES ADICIONADAS — COLOQUE DEPOIS
+-- BASE VAZIA - MARIONETEIRO
+-- SEM NENHUMA FUNÇÃO ADICIONAL
 -- ==========================================
-print("✅ BASE CARREGOU!")
 
--- 🔹 SERVIÇOS OBRIGATÓRIOS (NÃO MEXER AQUI)
+-- ✅ MENSAGEM DE CARGA PRA VOCÊ VER
+print("✅ BASE CARREGOU COM SUCESSO!")
+game:GetService("StarterGui"):SetCore("SendNotification",{
+    Title = "MEU SCRIPT",
+    Text = "Base pronta — adicione funções depois!",
+    Duration = 4
+})
+
+-- 🔹 SERVIÇOS OBRIGATÓRIOS (NÃO MEXER)
 local Players = game:GetService("Players")
-local RunService = game:GetService("RunService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
--- 🔹 DADOS DO JOGADOR
+-- 🔹 DADOS BÁSICOS DO JOGADOR
 local Player = Players.LocalPlayer
-
--- 🔹 ESPERA CARREGAR O PERSONAGEM
 local Character, Humanoid, RootPart
-local function AtualizarPersonagem()
+
+-- 🔹 ATUALIZA PERSONAGEM AO RESPONDER
+local function Atualizar()
     Character = Player.Character or Player.CharacterAdded:Wait()
     Humanoid = Character:WaitForChild("Humanoid")
     RootPart = Character:WaitForChild("HumanoidRootPart")
 end
-AtualizarPersonagem()
+Atualizar()
+Player.CharacterAdded:Connect(Atualizar)
 
--- 🔹 ATUALIZA QUANDO RESPONDER
-Player.CharacterAdded:Connect(AtualizarPersonagem)
-
--- 🔹 FUNÇÃO DE SEGURANÇA (NÃO DEIXA QUEBRAR)
-local function TentarExecutar(funcao)
-    local ok, erro = pcall(funcao)
-    if not ok then
-        warn("⚠️ ERRO: "..tostring(erro))
-    end
+-- 🔹 FUNÇÃO DE SEGURANÇA
+local function Tentar(funcao)
+    pcall(funcao)
 end
 
 -- ==========================================
--- >>> COLOQUE SUAS FUNÇÕES ABAIXO DEPOIS <<<
+-- >>> AQUI VOCÊ COLOCA O QUE QUISER DEPOIS <<<
 -- ==========================================
